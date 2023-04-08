@@ -26,7 +26,6 @@
 # ==========================================
 
 # La libraire responsable du chargement des données dans la mémoire
-import time
 from keras.preprocessing.image import ImageDataGenerator
 
 # Le Type de notre modéle (séquentiel)
@@ -54,6 +53,9 @@ from keras.models import load_model
 
 # Affichage des graphes 
 import matplotlib.pyplot as plt
+
+import time
+start_time = time.time()
 
 # ==========================================
 # ===============GPU SETUP==================
@@ -124,7 +126,7 @@ images_color_mode = "rgb"  # grayscale pour les image noir et blanc; rgb pour le
 image_shape = (image_scale, image_scale, image_channels) # la forme des images d'entrées, ce qui correspond à la couche d'entrée du réseau
 
 # Configuration des paramètres d'entrainement
-fit_batch_size = 32 # le nombre d'images entrainées ensemble: un batch
+fit_batch_size = 100 # le nombre d'images entrainées ensemble: un batch
 fit_epochs = 50 # Le nombre d'époques 
 
 # ==========================================
@@ -293,8 +295,6 @@ classifier = model.fit(x_train, y_train,
 # 4) Afficher le temps d'execution
 # ***********************************************
 # Plot accuracy over epochs (precision par époque)
-print(classifier.history.keys())
-start_time = time.time()
 end_time = time.time()
 print("Le temps d'exécution est de :", end_time - start_time, " secondes")
 
